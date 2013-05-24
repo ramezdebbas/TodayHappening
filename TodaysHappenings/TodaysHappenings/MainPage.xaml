@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="TodaysHappenings.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TodaysHappenings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cfo="using:CharmFlyoutLibrary"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <cfo:CharmFlyout
+           x:Name="cfoAbout"
+           Heading="About"
+           HeadingBackgroundBrush="#FF4E0000"
+           Grid.RowSpan="2">
+            <StackPanel x:Name="cfoAboutPanel">
+                <TextBlock x:Name="cfoLine1" TextWrapping="Wrap" FontSize="16">Today's Happenings.</TextBlock>
+                <TextBlock x:Name="cfoBlank1" />
+                <TextBlock x:Name="cfoLine2" TextWrapping="Wrap" FontSize="16">See in a glimpse what happened today in history. Every day you will get a fresh information about that day.</TextBlock>
+
+            </StackPanel>
+        </cfo:CharmFlyout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+          <StackPanel Orientation="Horizontal" Margin="20">
+              <TextBlock FontSize="30" Text="Criteria" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cmbBox" Margin="0,0,10,0" Width="200">
+                    <ComboBoxItem Content="All"></ComboBoxItem>
+                    <ComboBoxItem Content="Less Than"></ComboBoxItem>
+                    <ComboBoxItem Content="Greater Than"></ComboBoxItem>
+                  <ComboBoxItem Content="Equal To" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="txtSearch" Width="200" InputScope="Number" Margin="0,0,10,0"></TextBox>
+              <Button x:Name="Search" Content="Search" Click="Search_OnClick"></Button>
+        </StackPanel>
+        <ListView x:Name="lstItems"  Background="Transparent" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch"  Background="Transparent">
+                        <TextBlock Text="{Binding year,Mode=TwoWay}" FontSize="45" FontWeight="ExtraBlack" Foreground="#c85733" HorizontalAlignment="Stretch"></TextBlock>
+                        <TextBlock Text="{Binding val,Mode=TwoWay}" FontSize="25" FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Stretch"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>  
+            
+        </Grid>
+        
+    </Grid>
+</Page>
